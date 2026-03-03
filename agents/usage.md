@@ -19,6 +19,14 @@ When invoked:
 - If no research exists, invoke research agent via Task tool with subagent_type: "research"
 - Wait for research to complete, then provide summary
 
+Version handling:
+- Extract major version from user request when possible (e.g., "React 18" → "v18", "Reactor 3" → "v3")
+- If no version specified:
+  a) Check for existing research for any version of that library
+  b) If exists, summarize that and mention other available versions
+  c) If not, invoke research without version (researcher will create new file)
+- Pass version info to research agent in format: "[library]-v[major]" (e.g., "react-v18")
+
 When NOT to use:
 - Writing or implementing code (use build agent)
 - General programming questions not specific to a library
@@ -30,3 +38,4 @@ Output for calling agents:
 - Key APIs needed for common tasks
 - Minimal code snippets
 - Common pitfalls to avoid
+- Note if other major versions are available in research/
