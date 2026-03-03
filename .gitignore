@@ -1,6 +1,2 @@
-# Research outputs (generated files)
-research/*.md
-!research/.gitkeep
-
 # OpenCode local config
 .opencode/
