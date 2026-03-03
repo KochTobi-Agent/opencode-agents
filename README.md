@@ -9,11 +9,20 @@ opencode-agents/
 ├── README.md              # This file
 ├── opencode.jsonc         # OpenCode configuration with MCP servers
 ├── agents/                # Agent definitions (markdown)
-│   └── research.md       # Research agent for Context7
+│   ├── research.md       # Research agent for Context7
+│   └── usage.md          # Usage consultant agent
 └── research/              # Output directory for collected research
 ```
 
 ## Agents
+
+### Usage Agent
+
+A specialized agent that provides guidance on using libraries and frameworks. It checks for existing research documentation and invokes the research agent when needed.
+
+**Location:** `agents/usage.md`
+
+**Usage:** Invoke with `@usage` in OpenCode
 
 ### Research Agent
 
@@ -61,11 +70,23 @@ Copy agent markdown files to your OpenCode agents directory:
 For example:
 ```bash
 cp agents/research.md ~/.config/opencode/agents/research.md
+cp agents/usage.md ~/.config/opencode/agents/usage.md
 ```
 
 ## Usage
 
-When you need to research library or framework documentation, simply mention the research agent in your prompt:
+When you need guidance on using a library or framework, mention the usage agent in your prompt:
+
+```
+@usage How do I use Prisma with Next.js?
+```
+
+The usage agent will:
+1. Check for existing research in the `research/` directory
+2. Provide guidance based on available documentation
+3. Invoke the research agent if no documentation exists
+
+To research library or framework documentation directly:
 
 ```
 @research I need to understand how to use Prisma with Next.js
@@ -75,3 +96,5 @@ The agent will:
 1. Use Context7 MCP to fetch up-to-date documentation
 2. Collect relevant information
 3. Save the research as a markdown file in the `research/` directory
+
+> **Tip:** Use `@usage` first for library guidance. The usage agent will automatically invoke the research agent when needed.
